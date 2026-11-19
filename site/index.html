@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f8f7">
+  <meta name="description" content="Anime Adventures performance analytics — matches, Summer Pearls, efficiency and resources.">
+  <title>Overview · Anime Adventures Analytics</title>
+  <link rel="stylesheet" href="./assets/styles.css">
+  <script src="./assets/config.js" defer></script>
+  <script src="./assets/app.js" defer></script>
+</head>
+<body>
+  <div class="app-layout">
+    <aside class="sidebar" aria-label="Primary navigation">
+      <div class="brand"><span class="brand-mark">aa<span class="mark-dot">.</span></span><span class="brand-label">ANALYTICS<span>ANIME ADVENTURES</span></span></div>
+      <div class="nav-group-label">WORKSPACE</div>
+      <nav class="nav">
+        <a href="#overview" class="nav-link active" data-nav="overview"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>Overview<span class="nav-shortcut">01</span></a>
+        <a href="#trends" class="nav-link" data-nav="trends"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9"/><path d="M16 6h5v5"/></svg></span>Trends<span class="nav-shortcut">02</span></a>
+        <a href="#resources" class="nav-link" data-nav="resources"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M7 15h3"/></svg></span>Inventory<span class="nav-shortcut">03</span></a>
+        <a href="#matches" class="nav-link" data-nav="matches"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h10M7 8h10M7 13h10M7 18h10"/><circle cx="3.5" cy="3" r=".5"/><circle cx="3.5" cy="8" r=".5"/><circle cx="3.5" cy="13" r=".5"/><circle cx="3.5" cy="18" r=".5"/></svg></span>Match history<span class="nav-shortcut">04</span></a>
+      </nav>
+      <div class="sidebar-bottom">
+        <div class="source-meta"><span class="source-indicator"></span><div>DISCORD SOURCE<strong id="sourceStatus">Connecting</strong></div></div>
+        <div class="sidebar-foot">A clean look at every run.<br>Built for the grind.</div>
+      </div>
+    </aside>
+
+    <main class="main" id="overview">
+      <div class="topbar"><div class="breadcrumbs">WORKSPACE <span>/</span> ANALYTICS <span>/</span> <b>OVERVIEW</b></div><div class="topbar-right"><div class="top-live"><span class="pulse-dot"></span><span id="syncTime">Loading data</span></div><button class="icon-button" id="refreshBtn" title="Check for updates now" aria-label="Check for updates"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6"/><path d="M20 4v7h-7"/></svg></button></div></div>
+      <div class="page-content">
+        <section class="page-heading"><div><div class="eyebrow">ANALYTICS / PERFORMANCE</div><h1>Performance overview<span class="title-period">.</span></h1><p>A complete picture of your Anime Adventures sessions.</p></div><div class="heading-actions"><a id="demoLink" class="demo-link" href="?demo=1">View demo</a><button id="exportBtn" class="primary-btn"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 16v4h16v-4"/></svg> Export CSV</button></div></section>
+
+        <section class="filter-panel" aria-label="Dashboard filters">
+          <div class="periods" id="periodButtons" role="group" aria-label="Time range"><button class="period-btn" data-period="24h">24 hours</button><button class="period-btn active" data-period="7d">7 days</button><button class="period-btn" data-period="30d">30 days</button><button class="period-btn" data-period="all">All time</button></div>
+          <div class="filter-divider"></div>
+          <div class="filter-inputs"><label class="field-date"><span>FROM</span><input type="date" id="startDate" aria-label="Start date"></label><label class="field-date"><span>TO</span><input type="date" id="endDate" aria-label="End date"></label><label class="select-wrap"><span>MAP</span><select id="mapFilter" aria-label="Filter by map"><option value="">All maps</option></select></label><label class="select-wrap"><span>DIFFICULTY</span><select id="difficultyFilter" aria-label="Filter by difficulty"><option value="">All levels</option></select></label></div>
+        </section>
+
+        <div id="emptyState" class="empty-state" hidden><div class="empty-kicker">NO MATCHES FOUND</div><h2 id="emptyTitle">Your dashboard is ready.</h2><p id="emptyDescription">Connect a Discord bot through GitHub Secrets and run the update workflow. Data will appear here automatically after the first successful scan.</p><a href="?demo=1" class="primary-btn empty-demo" id="emptyDemo">Explore demo data <span>↗</span></a></div>
+
+        <div id="dataContent" hidden>
+          <div class="section-header section-header-kpi"><h2>Key indicators</h2><span id="kpiScope" class="section-meta">Selected period</span></div>
+          <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
+
+          <section class="analytics-grid" id="trends">
+            <article class="panel trend-panel"><div class="panel-head"><div><div class="panel-kicker">PERFORMANCE ANALYSIS</div><h2>Activity over time</h2><p>Track how your output changes across sessions.</p></div><div class="chart-metric" id="metricButtons"><button data-metric="pearls" class="active">Pearls</button><button data-metric="xp">XP</button><button data-metric="kills">Kills</button><button data-metric="damage">Damage</button></div></div><div class="chart-number"><span id="trendTotal">—</span><span id="trendTotalUnit">Summer Pearls in period</span></div><div class="chart-container" id="trendChart"><svg viewBox="0 0 920 305" role="img" aria-label="Trend over time"></svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div><div class="chart-footer"><span id="chartAxisLabel">Daily totals</span><span class="chart-source">Source: Discord match results</span></div></article>
+            <article class="panel efficiency-panel"><div class="panel-head"><div><div class="panel-kicker">SESSION QUALITY</div><h2>Efficiency</h2><p>Measured against recorded match time.</p></div></div><div class="efficiency-primary"><span class="eff-label">PEARLS PER HOUR</span><strong id="efficiencyPearls">—</strong><span class="eff-description" id="efficiencyContext">Based on completed runs</span></div><div class="efficiency-rows" id="efficiencyRows"></div><div class="efficiency-note">Time excludes lobbies and idle periods. Only matches with a recorded duration contribute to hourly rates.</div></article>
+          </section>
+
+          <section class="analytics-grid secondary-grid" id="resources"><article class="panel breakdown-panel"><div class="panel-head"><div><div class="panel-kicker">ACTIVITY DISTRIBUTION</div><h2>Map breakdown</h2><p>Sessions and earned pearls by location.</p></div><span id="mapsCount" class="mini-badge">0 maps</span></div><div id="mapBreakdown" class="map-breakdown"></div></article><article class="panel inventory-panel"><div class="panel-head"><div><div class="panel-kicker">LATEST REPORTED BALANCES</div><h2>Resource inventory</h2><p id="resourceTimestamp">As of most recent match.</p></div></div><div id="resourceList" class="resource-list"></div><div id="extraRewards" class="extra-rewards" hidden></div><p class="inventory-note">Balances are snapshots, not earned totals. Unrecognized icons can be named in <code>assets/config.js</code>.</p></article></section>
+
+          <section class="panel history-panel" id="matches"><div class="panel-head history-head"><div><div class="panel-kicker">MATCH ARCHIVE</div><h2>Recent sessions</h2><p>Every recorded run, sorted and searchable.</p></div><div class="history-controls"><label class="search-input"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="historySearch" placeholder="Search by map…" aria-label="Search matches"></label><select id="historySort" class="sort-select" aria-label="Sort matches"><option value="date">Newest first</option><option value="pearls">Most pearls</option><option value="damage">Most damage</option><option value="kills">Most kills</option><option value="duration">Longest match</option></select></div></div><div class="table-scroll"><table class="history-table"><thead><tr><th>DATE / TIME</th><th>MAP &amp; DIFFICULTY</th><th>RESULT</th><th class="num">DURATION</th><th class="num">PEARLS</th><th class="num">KILLS</th><th class="num">DAMAGE</th><th>DETAILS</th></tr></thead><tbody id="historyBody"></tbody></table></div><div class="history-footer"><span id="historyCount">Showing 0 sessions</span><button id="loadMore" class="secondary-btn" hidden>Load more <span>↓</span></button></div></section>
+          <div class="footer"><span>AA ANALYTICS <span class="footer-dot">/</span> OPEN SOURCE DASHBOARD</span><span>Data recalculated from Discord. Timezone: <span id="timezoneLabel">Europe/Kyiv</span>.</span></div>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>
