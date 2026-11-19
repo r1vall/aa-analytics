@@ -4,8 +4,8 @@ on:
   push:
     branches: [main]
   schedule:
-    # Every 30 minutes, away from the busy start of the hour (UTC).
-    - cron: "11,41 * * * *"
+    # Запуск каждые 10 минут
+    - cron: "*/10 * * * *"
   workflow_dispatch:
 
 permissions:
@@ -25,11 +25,14 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v4
+      
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
           cache: pip
+          
       - run: pip install -r requirements.txt
+      
       - name: Read Discord channel and build JSON
         env:
           DISCORD_BOT_TOKEN: ${{ secrets.DISCORD_BOT_TOKEN }}
@@ -41,10 +44,13 @@ jobs:
           else
             python -m scripts.sync_discord
           fi
+          
       - uses: actions/configure-pages@v5
+      
       - uses: actions/upload-pages-artifact@v3
         with:
           path: site
+          
       - name: Deploy GitHub Pages
         id: deployment
         uses: actions/deploy-pages@v4
