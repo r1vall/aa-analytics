@@ -1,61 +1,106 @@
-<!doctype html>
-<html lang="en">
+<!DOCTYPE html>
+
+<html data-theme="dark" lang="ru">
 <head>
-  <meta charset="utf-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1">
-  <meta name="theme-color" content="#f7f8f7">
-  <meta name="description" content="Anime Adventures performance analytics — matches, Summer Pearls, efficiency and resources.">
-  <title>Overview · Anime Adventures Analytics</title>
-  <link rel="stylesheet" href="./assets/styles.css">
-  <script src="./assets/config.js" defer></script>
-  <script src="./assets/app.js" defer></script>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1, viewport-fit=cover" name="viewport"/>
+<meta content="#130d1b" name="theme-color"/>
+<meta content="Anime Adventures Analytics — Summer Pearls, графики и история матчей." name="description"/>
+<title>AA Analytics — Аналитика</title>
+<link href="./assets/favicon.png" rel="icon" sizes="48x48" type="image/png"/>
+<link href="./assets/favicon.ico" rel="icon" sizes="any"/>
+<link href="./assets/apple-touch-icon.png" rel="apple-touch-icon"/>
+<link href="./assets/styles.css" rel="stylesheet"/><link href="./assets/theme-v4.css" rel="stylesheet"/>
+<script defer="" src="./assets/config.js"></script>
+<script defer="" src="./assets/app.js"></script>
 </head>
 <body>
-  <div class="app-layout">
-    <aside class="sidebar" aria-label="Primary navigation">
-      <div class="brand"><span class="brand-mark">aa<span class="mark-dot">.</span></span><span class="brand-label">ANALYTICS<span>ANIME ADVENTURES</span></span></div>
-      <div class="nav-group-label">WORKSPACE</div>
-      <nav class="nav">
-        <a href="#overview" class="nav-link active" data-nav="overview"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="3" width="7" height="7" rx="1.5"/><rect x="14" y="3" width="7" height="7" rx="1.5"/><rect x="3" y="14" width="7" height="7" rx="1.5"/><rect x="14" y="14" width="7" height="7" rx="1.5"/></svg></span>Overview<span class="nav-shortcut">01</span></a>
-        <a href="#trends" class="nav-link" data-nav="trends"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9"/><path d="M16 6h5v5"/></svg></span>Trends<span class="nav-shortcut">02</span></a>
-        <a href="#resources" class="nav-link" data-nav="resources"><span class="nav-icon"><svg viewBox="0 0 24 24"><rect x="3" y="5" width="18" height="15" rx="2"/><path d="M3 10h18M7 15h3"/></svg></span>Inventory<span class="nav-shortcut">03</span></a>
-        <a href="#matches" class="nav-link" data-nav="matches"><span class="nav-icon"><svg viewBox="0 0 24 24"><path d="M7 3h10M7 8h10M7 13h10M7 18h10"/><circle cx="3.5" cy="3" r=".5"/><circle cx="3.5" cy="8" r=".5"/><circle cx="3.5" cy="13" r=".5"/><circle cx="3.5" cy="18" r=".5"/></svg></span>Match history<span class="nav-shortcut">04</span></a>
-      </nav>
-      <div class="sidebar-bottom">
-        <div class="source-meta"><span class="source-indicator"></span><div>DISCORD SOURCE<strong id="sourceStatus">Connecting</strong></div></div>
-        <div class="sidebar-foot">A clean look at every run.<br>Built for the grind.</div>
-      </div>
-    </aside>
+<svg aria-hidden="true" class="icon-sprite" focusable="false" xmlns="http://www.w3.org/2000/svg">
+<symbol id="ic-overview" viewbox="0 0 24 24"><rect height="7" rx="1.8" width="7" x="3" y="3"></rect><rect height="7" rx="1.8" width="7" x="14" y="3"></rect><rect height="7" rx="1.8" width="7" x="3" y="14"></rect><rect height="7" rx="1.8" width="7" x="14" y="14"></rect></symbol>
+<symbol id="ic-activity" viewbox="0 0 24 24"><path d="M3 17l6-6 4 4 8-9"></path><path d="M16 6h5v5"></path></symbol>
+<symbol id="ic-box" viewbox="0 0 24 24"><rect height="15" rx="2" width="17" x="3.5" y="6"></rect><path d="M3.5 10h17M8 6V4a1 1 0 0 1 1-1h6a1 1 0 0 1 1 1v2"></path></symbol>
+<symbol id="ic-history" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3 2"></path></symbol>
+<symbol id="ic-moon" viewbox="0 0 24 24"><path d="M20.5 14.8A8.8 8.8 0 0 1 9.2 3.5a8.8 8.8 0 1 0 11.3 11.3Z"></path></symbol>
+<symbol id="ic-sun" viewbox="0 0 24 24"><circle cx="12" cy="12" r="4"></circle><path d="M12 2v2m0 16v2m10-10h-2M4 12H2m17.07-7.07-1.42 1.42M6.35 17.65l-1.42 1.42m14.14 0-1.42-1.42M6.35 6.35 4.93 4.93"></path></symbol>
+<symbol id="ic-refresh" viewbox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6"></path><path d="M20 4v7h-7"></path></symbol>
+<symbol id="ic-download" viewbox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 16v4h16v-4"></path></symbol>
+<symbol id="ic-chevron" viewbox="0 0 24 24"><path d="m7 10 5 5 5-5"></path></symbol>
+<symbol id="ic-arrow" viewbox="0 0 24 24"><path d="M5 19 19 5M10 5h9v9"></path></symbol>
+<symbol id="ic-search" viewbox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"></circle><path d="m16 16 5 5"></path></symbol>
+<symbol id="ic-menu" viewbox="0 0 24 24"><path d="M4 7h16M4 12h16M4 17h16"></path></symbol>
+<symbol id="ic-x" viewbox="0 0 24 24"><path d="M5 5l14 14M19 5 5 19"></path></symbol>
+<symbol id="ic-diamond" viewbox="0 0 24 24"><path d="m12 2 9 9-9 11-9-11 9-9Z"></path><path d="M3 11h18m-13-9 4 9 4-9"></path></symbol>
+<symbol id="ic-clock" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 7v5l3.5 2"></path></symbol>
+<symbol id="ic-bolt" viewbox="0 0 24 24"><path d="m13 2-9 12h7l-1 8 10-13h-7l1-7Z"></path></symbol>
+<symbol id="ic-layers" viewbox="0 0 24 24"><rect height="16" rx="2" width="16" x="4" y="4"></rect><path d="M8 9h8M8 13h8M8 17h5"></path></symbol>
+<symbol id="ic-star" viewbox="0 0 24 24"><path d="m12 2.6 2.9 6 6.6 1-4.8 4.6 1.2 6.6L12 17.7l-5.9 3.1 1.1-6.6-4.7-4.6 6.6-1L12 2.6Z"></path></symbol>
+<symbol id="ic-target" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><circle cx="12" cy="12" r="5"></circle><circle cx="12" cy="12" r="1"></circle></symbol>
+<symbol id="ic-shield" viewbox="0 0 24 24"><path d="m12 2 8 4v6c0 5-3.5 8-8 10-4.5-2-8-5-8-10V6l8-4Z"></path><path d="m9 12 2 2 4-4"></path></symbol>
+<symbol id="ic-gauge" viewbox="0 0 24 24"><path d="M4.6 17a9 9 0 1 1 14.8 0"></path><path d="m12 13 5-5"></path><path d="M9 17h6"></path></symbol>
+<symbol id="ic-coin" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 6v12m4-9c-1.5-1.5-6-1.7-7.5.3-1.2 2 1.5 3 3.5 3.2s4.5 1.5 3.5 3.2S9 18 8 16"></path></symbol>
+<symbol id="ic-gem" viewbox="0 0 24 24"><path d="m7 3 10 0 5 6-10 12L2 9l5-6Z"></path><path d="M2 9h20m-15-6 5 6 5-6M12 9v12"></path></symbol>
+<symbol id="ic-flower" viewbox="0 0 24 24"><path d="M12 11c-5-10 3-12 4-5 7-6 11 1 3 5 9 4 4 11-2 7-1 8-9 6-9-2-8 1-8-7 1-7"></path><circle cx="12" cy="12" r="2"></circle></symbol>
+<symbol id="ic-database" viewbox="0 0 24 24"><ellipse cx="12" cy="5" rx="8" ry="3"></ellipse><path d="M4 5v14c0 4 16 4 16 0V5M4 12c0 4 16 4 16 0"></path></symbol>
+<symbol id="ic-external" viewbox="0 0 24 24"><path d="M14 4h6v6m0-6-9 9"></path><path d="M19 14v5a1 1 0 0 1-1 1H5a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1h5"></path></symbol>
+<symbol id="ic-filter" viewbox="0 0 24 24"><path d="M4 6h16M7 12h10m-7 6h4"></path></symbol>
+<symbol id="ic-info" viewbox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 11v6M12 7h.01"></path></symbol>
+<symbol id="ic-check" viewbox="0 0 24 24"><path d="m5 12 4 4L19 6"></path></symbol>
+</svg>
+<div class="sidebar-shade" hidden="" id="sidebarShade"></div>
+<div class="shell">
+<aside aria-label="Навигация" class="sidebar" id="sidebar">
+<a aria-label="AA Analytics — на главную" class="brand" href="#overview">
+<img alt="Логотип AA Analytics" class="brand-icon" height="43" src="./assets/sakura-mark.png" width="43"/>
+<span class="brand-text"><strong>Anime Adventures</strong><small>АНАЛИТИКА / PERSONAL</small></span>
+</a>
+<div class="nav-caption" data-i18n="workspace">ПРОСТРАНСТВО</div>
+<nav class="nav-links">
 
-    <main class="main" id="overview">
-      <div class="topbar"><div class="breadcrumbs">WORKSPACE <span>/</span> ANALYTICS <span>/</span> <b>OVERVIEW</b></div><div class="topbar-right"><div class="top-live"><span class="pulse-dot"></span><span id="syncTime">Loading data</span></div><button class="icon-button" id="refreshBtn" title="Check for updates now" aria-label="Check for updates"><svg viewBox="0 0 24 24"><path d="M20 11a8 8 0 1 0-2.3 6"/><path d="M20 4v7h-7"/></svg></button></div></div>
-      <div class="page-content">
-        <section class="page-heading"><div><div class="eyebrow">ANALYTICS / PERFORMANCE</div><h1>Performance overview<span class="title-period">.</span></h1><p>A complete picture of your Anime Adventures sessions.</p></div><div class="heading-actions"><a id="demoLink" class="demo-link" href="?demo=1">View demo</a><button id="exportBtn" class="primary-btn"><svg viewBox="0 0 24 24"><path d="M12 3v12m0 0 4-4m-4 4-4-4M4 16v4h16v-4"/></svg> Export CSV</button></div></section>
 
-        <section class="filter-panel" aria-label="Dashboard filters">
-          <div class="periods" id="periodButtons" role="group" aria-label="Time range"><button class="period-btn" data-period="24h">24 hours</button><button class="period-btn active" data-period="7d">7 days</button><button class="period-btn" data-period="30d">30 days</button><button class="period-btn" data-period="all">All time</button></div>
-          <div class="filter-divider"></div>
-          <div class="filter-inputs"><label class="field-date"><span>FROM</span><input type="date" id="startDate" aria-label="Start date"></label><label class="field-date"><span>TO</span><input type="date" id="endDate" aria-label="End date"></label><label class="select-wrap"><span>MAP</span><select id="mapFilter" aria-label="Filter by map"><option value="">All maps</option></select></label><label class="select-wrap"><span>DIFFICULTY</span><select id="difficultyFilter" aria-label="Filter by difficulty"><option value="">All levels</option></select></label></div>
-        </section>
 
-        <div id="emptyState" class="empty-state" hidden><div class="empty-kicker">NO MATCHES FOUND</div><h2 id="emptyTitle">Your dashboard is ready.</h2><p id="emptyDescription">Connect a Discord bot through GitHub Secrets and run the update workflow. Data will appear here automatically after the first successful scan.</p><a href="?demo=1" class="primary-btn empty-demo" id="emptyDemo">Explore demo data <span>↗</span></a></div>
 
-        <div id="dataContent" hidden>
-          <div class="section-header section-header-kpi"><h2>Key indicators</h2><span id="kpiScope" class="section-meta">Selected period</span></div>
-          <section class="kpi-grid" id="kpiGrid" aria-label="Key performance indicators"></section>
+<a class="nav-link" data-nav="overview" href="#overview"><svg class="icon"><use href="#ic-overview"></use></svg><span data-i18n="navOverview">Обзор</span><small>01</small></a><a class="nav-link active" data-nav="trends" href="#trends"><svg class="icon"><use href="#ic-activity"></use></svg><span data-i18n="navTrends">Аналитика</span><small>02</small></a><a class="nav-link" data-nav="matches" href="#matches"><svg class="icon"><use href="#ic-history"></use></svg><span data-i18n="navMatches">История матчей</span><small>03</small></a><a class="nav-link" data-nav="resources" href="#resources"><svg class="icon"><use href="#ic-box"></use></svg><span data-i18n="navResources">Ресурсы</span><small>04</small></a></nav>
 
-          <section class="analytics-grid" id="trends">
-            <article class="panel trend-panel"><div class="panel-head"><div><div class="panel-kicker">PERFORMANCE ANALYSIS</div><h2>Activity over time</h2><p>Track how your output changes across sessions.</p></div><div class="chart-metric" id="metricButtons"><button data-metric="pearls" class="active">Pearls</button><button data-metric="xp">XP</button><button data-metric="kills">Kills</button><button data-metric="damage">Damage</button></div></div><div class="chart-number"><span id="trendTotal">—</span><span id="trendTotalUnit">Summer Pearls in period</span></div><div class="chart-container" id="trendChart"><svg viewBox="0 0 920 305" role="img" aria-label="Trend over time"></svg><div class="chart-tooltip" id="chartTooltip" hidden></div></div><div class="chart-footer"><span id="chartAxisLabel">Daily totals</span><span class="chart-source">Source: Discord match results</span></div></article>
-            <article class="panel efficiency-panel"><div class="panel-head"><div><div class="panel-kicker">SESSION QUALITY</div><h2>Efficiency</h2><p>Measured against recorded match time.</p></div></div><div class="efficiency-primary"><span class="eff-label">PEARLS PER HOUR</span><strong id="efficiencyPearls">—</strong><span class="eff-description" id="efficiencyContext">Based on completed runs</span></div><div class="efficiency-rows" id="efficiencyRows"></div><div class="efficiency-note">Time excludes lobbies and idle periods. Only matches with a recorded duration contribute to hourly rates.</div></article>
-          </section>
+<div class="sidebar-bottom"><div class="sidebar-status"><span class="status-pip" id="sourcePip"></span><div><small data-i18n="connection">ИСТОЧНИК ДАННЫХ</small><strong id="sourceStatus">Подключение...</strong></div></div><div class="sidebar-version">AA ANALYTICS <span>V4.0</span></div></div>
+</aside>
+<div class="main-column">
+<header class="topbar"><div class="topbar-left">
+<button aria-expanded="false" aria-label="Открыть меню" class="icon-btn mobile-menu" id="menuButton" type="button"><svg class="icon"><use href="#ic-menu"></use></svg></button>
+<div class="breadcrumb"><span data-i18n="workspaceShort">WORKSPACE</span><span class="slash">/</span><strong data-keep="1" id="breadcrumbCurrent">Аналитика</strong></div>
+</div><div class="top-actions">
+<div class="sync-indicator" id="syncIndicator"><span class="sync-light"></span><span id="syncTime">Проверяем данные...</span></div>
+<button aria-label="Проверить обновления" class="icon-btn refresh-btn" id="refreshBtn" title="Проверить обновления" type="button"><svg class="icon"><use href="#ic-refresh"></use></svg></button>
+<span class="top-separator"></span>
+<button aria-label="Сменить язык" class="lang-btn" id="languageBtn" title="Сменить язык" type="button">RU</button>
+<button aria-label="Сменить тему" class="theme-btn" id="themeBtn" title="Сменить тему" type="button"><svg class="icon theme-icon-moon"><use href="#ic-moon"></use></svg><svg class="icon theme-icon-sun"><use href="#ic-sun"></use></svg><span class="theme-btn-copy" id="themeBtnLabel">Тёмная</span></button>
+</div></header>
+<main class="content" id="overview">
+<div class="demo-banner" hidden="" id="demoBanner"><svg class="icon"><use href="#ic-info"></use></svg><span data-i18n="demoBanner">ДЕМО-РЕЖИМ: здесь показаны вымышленные данные, не ваша статистика Discord.</span><a data-i18n="backLive" href="./">К реальным данным <span aria-hidden="true">↗</span></a></div>
+<section aria-label="Заголовок страницы" class="page-heading"><div class="page-heading-copy"><div class="heading-kicker"><span class="kicker-line"></span> GAME INSIGHTS / LIVE DASHBOARD</div><h1 data-i18n="dashboardTitle">Аналитика</h1><p data-i18n="dashboardSubtitle">Краткий обзор статистики и последних матчей.</p></div><div class="heading-right"><span class="heading-status"><span class="pulse-dot"></span><span data-i18n="syncAutomatic">Обновляется автоматически</span></span></div></section>
+<section aria-label="Фильтры" class="filter-bar">
+<div aria-label="Фильтр периода" class="period-group" id="periodButtons" role="group">
+<button data-i18n="period24" data-period="24h" type="button">24 часа</button><button class="selected" data-i18n="period7" data-period="7d" type="button">7 дней</button><button data-i18n="period30" data-period="30d" type="button">30 дней</button><button data-i18n="periodAll" data-period="all" type="button">Всё время</button>
+</div><div class="filter-controls"><label class="filter-select"><svg class="icon"><use href="#ic-filter"></use></svg><select aria-label="Карта" id="mapFilter"><option value="">Все карты</option></select><svg class="icon tiny"><use href="#ic-chevron"></use></svg></label><label class="filter-select"><select aria-label="Сложность" id="difficultyFilter"><option value="">Все сложности</option></select><svg class="icon tiny"><use href="#ic-chevron"></use></svg></label><button class="more-filters-btn" id="customDateToggle" type="button"><svg class="icon"><use href="#ic-history"></use></svg><span data-i18n="dates">Даты</span></button><button class="reset-btn" hidden="" id="resetFilters" type="button"><svg class="icon"><use href="#ic-x"></use></svg><span data-i18n="reset">Сбросить</span></button></div>
+<div class="date-popover" hidden="" id="datePopover"><label><span data-i18n="from">С</span><input aria-label="Дата начала" id="startDate" type="date"/></label><label><span data-i18n="to">По</span><input aria-label="Дата окончания" id="endDate" type="date"/></label><button data-i18n="apply" id="dateApply" type="button">Применить</button><div class="date-error" id="dateError" role="alert"></div></div>
+</section>
+<div class="empty-state" hidden="" id="emptyState"><div class="empty-mark"><img alt="" src="./assets/sakura-mark.png"/></div><span class="empty-kicker" data-i18n="emptyKicker">ЗАПИСЕЙ НЕТ</span><h2 id="emptyTitle">Здесь появится твоя статистика.</h2><p id="emptyDescription">Подключи Discord через GitHub Secrets и запусти Update dashboard.</p><button class="secondary-btn" data-i18n="resetFilters" id="emptyReset" type="button">Сбросить фильтры</button><a class="primary-btn" data-i18n="openDemo" href="?demo=1" id="emptyDemo">Открыть демо <span>↗</span></a></div>
+<div hidden="" id="dataContent">
+<div class="section-top visually-hidden" id="sectionOverview"><div><div class="section-eyebrow" data-i18n="atAGlance">КРАТКО О ГЛАВНОМ</div><h2 data-i18n="keyMetrics">Ключевые показатели</h2></div><span class="section-meta" id="kpiScope">Последние 7 дней</span></div>
+<section aria-label="Основные показатели" class="kpi-grid" id="kpiGrid"></section>
+<section class="analytics-grid single-chart" id="trends">
+<article class="surface-panel chart-panel"><div class="panel-head chart-panel-head"><div><h2 data-i18n="trendTitleV4">Динамика наград</h2></div><div class="metric-switch" id="metricButtons"><button class="active" data-i18n="metricPearls" data-metric="pearls" type="button">Перлы</button><button data-metric="xp" type="button">XP</button><button data-i18n="metricKills" data-metric="kills" type="button">Киллы</button><button data-i18n="metricDamage" data-metric="damage" type="button">Урон</button></div></div><div class="chart-headline"><strong id="trendTotal">—</strong><span id="trendTotalUnit">Summer Pearls за период</span></div><div class="chart-wrap" id="trendChart"><svg aria-label="График динамики" role="img" viewbox="0 0 840 275"></svg><div class="chart-tooltip" hidden="" id="chartTooltip"></div></div><div class="chart-footer"><span id="chartAxisLabel">По дням</span><span data-i18n="chartSource">Источник: результаты матчей Discord</span></div></article>
 
-          <section class="analytics-grid secondary-grid" id="resources"><article class="panel breakdown-panel"><div class="panel-head"><div><div class="panel-kicker">ACTIVITY DISTRIBUTION</div><h2>Map breakdown</h2><p>Sessions and earned pearls by location.</p></div><span id="mapsCount" class="mini-badge">0 maps</span></div><div id="mapBreakdown" class="map-breakdown"></div></article><article class="panel inventory-panel"><div class="panel-head"><div><div class="panel-kicker">LATEST REPORTED BALANCES</div><h2>Resource inventory</h2><p id="resourceTimestamp">As of most recent match.</p></div></div><div id="resourceList" class="resource-list"></div><div id="extraRewards" class="extra-rewards" hidden></div><p class="inventory-note">Balances are snapshots, not earned totals. Unrecognized icons can be named in <code>assets/config.js</code>.</p></article></section>
+</section><section aria-label="Дополнительные показатели" class="kpi-grid kpi-secondary" id="kpiSecondary"></section><section class="surface-panel history-panel" id="matches"><div class="panel-head history-head"><div><h2 data-i18n="lastMatchesV4">Последние матчи</h2></div><div class="history-actions"><label class="search-field"><svg class="icon"><use href="#ic-search"></use></svg><input aria-label="Поиск по матчам" id="historySearch" placeholder="Поиск по карте..." type="search"/></label><label class="sort-select"><select aria-label="Сортировка" id="historySort"><option value="date">Сначала новые</option><option value="pearls">Больше перлов</option><option value="damage">Больше урона</option><option value="kills">Больше киллов</option><option value="duration">Дольше матч</option></select><svg class="icon tiny"><use href="#ic-chevron"></use></svg></label><button class="export-btn" id="exportBtn" type="button"><svg class="icon"><use href="#ic-download"></use></svg><span data-i18n="export">Экспорт CSV</span></button></div></div><div class="table-scroll"><table><thead><tr><th data-i18n="thDate">ДАТА</th><th data-i18n="thMap">КАРТА И СЛОЖНОСТЬ</th><th data-i18n="thResult">РЕЗУЛЬТАТ</th><th class="numeric" data-i18n="thTime">ВРЕМЯ</th><th class="numeric" data-i18n="thPearls">ПЕРЛЫ</th><th class="numeric" data-i18n="thKills">КИЛЛЫ</th><th class="numeric" data-i18n="thDamage">УРОН</th><th class="action-col" data-i18n="thLink">ССЫЛКА</th></tr></thead><tbody id="historyBody"></tbody></table></div><div class="history-footer"><span id="historyCount">0 матчей</span><button class="more-btn" hidden="" id="loadMore" type="button"><span data-i18n="showMore">Показать ещё</span><svg class="icon"><use href="#ic-chevron"></use></svg></button></div></section>
+<section class="lower-grid insights-grid" id="resources"><article class="surface-panel efficiency-panel"><div class="panel-head"><div><div class="section-eyebrow" data-i18n="effEyebrow">ЭФФЕКТИВНОСТЬ</div><h2 data-i18n="effTitle">Темп фарма</h2><p data-i18n="effDesc">В расчёте на игровое время.</p></div><div class="mini-icon"><svg class="icon"><use href="#ic-gauge"></use></svg></div></div><div class="eff-focus"><span data-i18n="perHour">SUMMER PEARLS / ЧАС</span><strong id="efficiencyPearls">—</strong><small id="efficiencyContext">По матчам с известной длительностью</small></div><div class="eff-rows" id="efficiencyRows"></div><div class="eff-note"><svg class="icon"><use href="#ic-info"></use></svg><span data-i18n="effNote">Время в лобби не учитывается. Почасовые значения рассчитаны только для матчей с известной длительностью.</span></div></article>
+<article class="surface-panel maps-panel"><div class="panel-head"><div><h2 data-i18n="mapsTitle">Карты и режимы</h2><p data-i18n="mapsDesc">Распределение матчей по локациям.</p></div><span class="count-chip" id="mapsCount">0 карт</span></div><div class="map-breakdown" id="mapBreakdown"></div></article>
+<article class="surface-panel inventory-panel"><div class="panel-head"><div><h2 data-i18n="inventoryTitle">Инвентарь</h2><p id="resourceTimestamp">Последний сохранённый снимок.</p></div><div class="mini-icon"><svg class="icon"><use href="#ic-box"></use></svg></div></div><div class="resource-list" id="resourceList"></div><div class="extra-rewards" hidden="" id="extraRewards"></div><p class="inventory-note"><svg class="icon"><use href="#ic-info"></use></svg><span data-i18n="inventoryNote">Здесь показан последний баланс, а не сумма дохода. Неопознанные иконки можно подписать в assets/config.js.</span></p></article>
+</section>
 
-          <section class="panel history-panel" id="matches"><div class="panel-head history-head"><div><div class="panel-kicker">MATCH ARCHIVE</div><h2>Recent sessions</h2><p>Every recorded run, sorted and searchable.</p></div><div class="history-controls"><label class="search-input"><svg viewBox="0 0 24 24"><circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/></svg><input type="search" id="historySearch" placeholder="Search by map…" aria-label="Search matches"></label><select id="historySort" class="sort-select" aria-label="Sort matches"><option value="date">Newest first</option><option value="pearls">Most pearls</option><option value="damage">Most damage</option><option value="kills">Most kills</option><option value="duration">Longest match</option></select></div></div><div class="table-scroll"><table class="history-table"><thead><tr><th>DATE / TIME</th><th>MAP &amp; DIFFICULTY</th><th>RESULT</th><th class="num">DURATION</th><th class="num">PEARLS</th><th class="num">KILLS</th><th class="num">DAMAGE</th><th>DETAILS</th></tr></thead><tbody id="historyBody"></tbody></table></div><div class="history-footer"><span id="historyCount">Showing 0 sessions</span><button id="loadMore" class="secondary-btn" hidden>Load more <span>↓</span></button></div></section>
-          <div class="footer"><span>AA ANALYTICS <span class="footer-dot">/</span> OPEN SOURCE DASHBOARD</span><span>Data recalculated from Discord. Timezone: <span id="timezoneLabel">Europe/Kyiv</span>.</span></div>
-        </div>
-      </div>
-    </main>
-  </div>
+</div>
+<footer class="footer"><div>© AA ANALYTICS <span class="footer-accent">/</span> <span data-i18n="footerDesc">GAME ANALYTICS / ANIME ADVENTURES</span></div><div><span data-i18n="timezone">Часовой пояс</span>: <strong id="timezoneLabel">Europe/Kyiv</strong> <span class="footer-dot">·</span> <span data-i18n="autoSync">Автообновление: каждые 5 минут*</span></div></footer>
+</main>
+</div>
+</div>
+<div aria-live="polite" class="toast" id="toast" role="status"></div>
 </body>
 </html>
